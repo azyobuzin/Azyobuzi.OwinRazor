@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>azyobuzin</authors>
+    <owners>azyobuzin</owners>
+    <licenseUrl>https://github.com/azyobuzin/Azyobuzi.OwinRazor/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/azyobuzin/Azyobuzi.OwinRazor</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A library for Microsoft.Owin app with RazorEngine</description>
+    <copyright>(C) 2015 azyobuzin</copyright>
+    <tags>razor owin</tags>
+  </metadata>
+</package>
