@@ -8,14 +8,21 @@ namespace Azyobuzi.OwinRazor
 {
     public static class RazorHelper
     {
-        public static void Run(IOwinContext owinContext, TextWriter writer, string viewName, Type modelType, object model, DynamicViewBag viewBag)
+        public static TemplateServiceConfiguration CreateConfiguration(IOwinContext owinContext)
         {
-            using (var service = RazorEngineService.Create(new TemplateServiceConfiguration()
+            return new TemplateServiceConfiguration()
             {
                 Activator = new AppTemplateActivator(owinContext),
                 BaseTemplateType = typeof(AppTemplateBase<>),
-                TemplateManager = AppTemplateManager.Default
-            }))
+                TemplateManager = AppTemplateManager.Default,
+                DisableTempFileLocking = true,
+                CachingProvider = new DefaultCachingProvider(_ => { })
+            };
+        }
+
+        public static void Run(IOwinContext owinContext, TextWriter writer, string viewName, Type modelType, object model, DynamicViewBag viewBag)
+        {
+            using (var service = RazorEngineService.Create(CreateConfiguration(owinContext)))
             {
                 if (service.IsTemplateCached(viewName, modelType))
                     service.Run(viewName, writer, modelType, model, viewBag);
