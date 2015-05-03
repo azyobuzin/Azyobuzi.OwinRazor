@@ -5,6 +5,13 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azyobuzi.OwinRazor", "Azyobuzi.OwinRazor\Azyobuzi.OwinRazor.csproj", "{0B5A3514-17DB-444B-A1CD-D55B609D3614}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azyobuzi.OwinRazor.MSBuild", "Azyobuzi.OwinRazor.MSBuild\Azyobuzi.OwinRazor.MSBuild.csproj", "{7161CCC0-4B20-4CB3-8C8F-E76DE9E1AF4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azyobuzi.OwinRazor.Sample", "Azyobuzi.OwinRazor.Sample\Azyobuzi.OwinRazor.Sample.csproj", "{4BA1B287-C9DA-49F3-A343-D11A9D619C17}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7161CCC0-4B20-4CB3-8C8F-E76DE9E1AF4F} = {7161CCC0-4B20-4CB3-8C8F-E76DE9E1AF4F}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,14 @@ Global
 		{0B5A3514-17DB-444B-A1CD-D55B609D3614}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B5A3514-17DB-444B-A1CD-D55B609D3614}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B5A3514-17DB-444B-A1CD-D55B609D3614}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7161CCC0-4B20-4CB3-8C8F-E76DE9E1AF4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7161CCC0-4B20-4CB3-8C8F-E76DE9E1AF4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7161CCC0-4B20-4CB3-8C8F-E76DE9E1AF4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7161CCC0-4B20-4CB3-8C8F-E76DE9E1AF4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BA1B287-C9DA-49F3-A343-D11A9D619C17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BA1B287-C9DA-49F3-A343-D11A9D619C17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BA1B287-C9DA-49F3-A343-D11A9D619C17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BA1B287-C9DA-49F3-A343-D11A9D619C17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
