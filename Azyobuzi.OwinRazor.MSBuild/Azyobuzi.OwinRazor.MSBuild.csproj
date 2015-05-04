@@ -51,16 +51,15 @@
   <ItemGroup>
     <None Include="Azyobuzi.OwinRazor.MSBuild.targets">
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
   <Target Name="AfterBuild">
+    <ItemGroup>
+      <_DllFiles Include="$(OutputPath)*.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="Azyobuzi.OwinRazor.MSBuild.targets" DestinationFolder="..\bin\$(Configuration)\build" />
+    <Copy SourceFiles="@(_DllFiles)" DestinationFolder="..\bin\$(Configuration)\tools" />
   </Target>
-  -->
 </Project>

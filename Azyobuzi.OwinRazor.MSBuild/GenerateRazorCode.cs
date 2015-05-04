@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Microsoft.AspNet.Razor;
+using Microsoft.AspNet.Razor.Generator;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
@@ -61,7 +62,20 @@ namespace Azyobuzi.OwinRazor.MSBuild
 
                 try
                 {
-                    var engine = new RazorTemplateEngine(new RazorEngineHost(lang));
+                    var host = new RazorEngineHost(lang);
+                    host.DefaultBaseClass = "Azyobuzi.OwinRazor.TemplateBase";
+                    host.NamespaceImports.Add("System");
+                    host.GeneratedClassContext = new GeneratedClassContext(
+                        GeneratedClassContext.DefaultExecuteMethodName,
+                        GeneratedClassContext.DefaultWriteMethodName,
+                        GeneratedClassContext.DefaultWriteLiteralMethodName,
+                        "WriteTo",
+                        "WriteLiteralTo",
+                        null,
+                        "DefineSection",
+                        new GeneratedTagHelperContext()
+                    );
+                    var engine = new RazorTemplateEngine(host);
                     var result = engine.GenerateCode(
                         file.OpenRead(),
                         Path.GetFileNameWithoutExtension(file.Name),
@@ -71,6 +85,7 @@ namespace Azyobuzi.OwinRazor.MSBuild
                     if (result.Success)
                     {
                         var outputFile = Path.Combine(this.OutputDirectory, source.ItemSpec);
+                        outputFile = Path.ChangeExtension(outputFile, Path.GetExtension(outputFile).Substring(0, 3));
                         Directory.CreateDirectory(Path.GetDirectoryName(outputFile));
                         File.WriteAllText(outputFile, result.GeneratedCode);
                         outputFiles.Add(outputFile);

@@ -1,21 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <BuildDependsOn>
+    <CompileDependsOn>
       GenerateRazorCode;
-      $(BuildDependsOn)
-    </BuildDependsOn>
-
+      $(CompileDependsOn)
+    </CompileDependsOn>
     <RazorOutputDirectory>$(IntermediateOutputPath)Azyobuzi.OwinRazor\</RazorOutputDirectory>
   </PropertyGroup>
 
   <ItemGroup>
-    <AvailableItemName Include="CompileRazor" />
+    <AvailableItemName Include="CompileRazor" />  
+    <_RazorOutputs Include="@(CompileRazor -> '$(RazorOutputDirectory)%(RelativeDir)%(Filename)%(Extension->Substring(0, 3))')" />
   </ItemGroup>
   
-  <UsingTask AssemblyFile="Azyobuzi.OwinRazor.MSBuild.dll" TaskName="Azyobuzi.OwinRazor.MSBuild.GenerateRazorCode" />
+  <UsingTask AssemblyFile="..\tools\Azyobuzi.OwinRazor.MSBuild.dll" TaskName="Azyobuzi.OwinRazor.MSBuild.GenerateRazorCode" />
   
-  <Target Name="GenerateRazorCode">
+  <Target Name="GenerateRazorCode" Inputs="@(CompileRazor)" Outputs="@(_RazorOutputs)">
+    <Message Text="$(_RazorOutputs)" /> <!-- Debug -->
     <GenerateRazorCode Sources="@(CompileRazor)" OutputDirectory="$(RazorOutputDirectory)" RootNamespace="$(RootNamespace)">
       <Output TaskParameter="OutputFiles" ItemName="Compile" />
     </GenerateRazorCode>
