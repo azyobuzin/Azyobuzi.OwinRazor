@@ -74,7 +74,10 @@ namespace Azyobuzi.OwinRazor.MSBuild
                         null,
                         "DefineSection",
                         new GeneratedTagHelperContext()
-                    );
+                    )
+                    {
+                        ResolveUrlMethodName = "Href"
+                    };
                     var engine = new RazorTemplateEngine(host);
                     var result = engine.GenerateCode(
                         file.OpenRead(),

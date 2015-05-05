@@ -1,15 +1,14 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>こんにちは世界</title>
-</head>
-<body>
-    @DateTime.Now
-</body>
-</html>
+﻿@using Azyobuzi.OwinRazor.Sample.Models
+@using Azyobuzi.OwinRazor.Sample.Views
+@inherits Azyobuzi.OwinRazor.TemplateBase<IndexModel>
+@{
+    Layout = new Layout();
+    ViewBag.Title = "こんにちは世界";
+}
 
-@section Test
+<p>Hello, @await PartialAsync(new NameCard(), Model.Name)</p>
+
+@section footer
 {
-    <p>なんじゃこりゃ</p>
+    <p><a href="~/">Home</a> | <a href="~/linktest/">Link Test</a></p>
 }

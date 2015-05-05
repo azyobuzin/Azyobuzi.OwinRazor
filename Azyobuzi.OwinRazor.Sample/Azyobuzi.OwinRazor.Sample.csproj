@@ -61,13 +61,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <CompileRazor Include="Views\LinkTest.cshtml" />
     <None Include="packages.config" />
     <CompileRazor Include="Views\Index.cshtml" />
+    <CompileRazor Include="Views\Layout.cshtml" />
+    <CompileRazor Include="Views\NameCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Azyobuzi.OwinRazor\Azyobuzi.OwinRazor.csproj">

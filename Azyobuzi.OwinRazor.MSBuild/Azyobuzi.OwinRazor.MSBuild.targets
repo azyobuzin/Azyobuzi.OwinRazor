@@ -20,11 +20,12 @@
     <RazorOutputs Sources="@(CompileRazor)" OutputDirectory="$(RazorOutputDirectory)">
       <Output TaskParameter="Outputs" ItemName="_RazorOutputs" />
     </RazorOutputs>
+    <ItemGroup>
+      <Compile Include="@(_RazorOutputs)" />
+    </ItemGroup>
   </Target>
 
   <Target Name="GenerateRazorCode" Inputs="@(CompileRazor)" Outputs="@(_RazorOutputs)" DependsOnTargets="_GenRazorOutputs">
-    <GenerateRazorCode Sources="@(CompileRazor)" OutputDirectory="$(RazorOutputDirectory)" RootNamespace="$(RootNamespace)">
-      <Output TaskParameter="OutputFiles" ItemName="Compile" />
-    </GenerateRazorCode>
+    <GenerateRazorCode Sources="@(CompileRazor)" OutputDirectory="$(RazorOutputDirectory)" RootNamespace="$(RootNamespace)" />
   </Target>
 </Project>

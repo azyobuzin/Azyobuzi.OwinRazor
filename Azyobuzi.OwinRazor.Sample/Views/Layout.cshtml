@@ -1,0 +1,13 @@
+﻿@inherits Azyobuzi.OwinRazor.TemplateBase
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    @RenderBody()
+    <hr />
+    @await RenderSectionAsync("footer")
+</body>
+</html>

@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
+using System.Threading.Tasks;
+using Microsoft.Owin;
 
 namespace Azyobuzi.OwinRazor
 {
     public class ExecutionContext
     {
-        public ExecutionContext(TextWriter output)
+        public ExecutionContext(IOwinContext owinContext, ViewDataDictionary viewData = null)
         {
-            this.Output = output;
+            this.OwinContext = owinContext;
+            this.ViewData = viewData ?? new ViewDataDictionary();
             this.Sections = new Dictionary<string, Func<TextWriter, Task>>();
         }
 
-        public TextWriter Output { get; private set; }
+        public IOwinContext OwinContext { get; private set; }
+        public ViewDataDictionary ViewData { get; private set; }
         public IDictionary<string, Func<TextWriter, Task>> Sections { get; private set; }
+        public string Body { get; set; }
     }
 }
