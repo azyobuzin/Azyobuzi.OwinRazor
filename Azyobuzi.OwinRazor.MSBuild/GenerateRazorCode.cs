@@ -84,8 +84,7 @@ namespace Azyobuzi.OwinRazor.MSBuild
                     );
                     if (result.Success)
                     {
-                        var outputFile = Path.Combine(this.OutputDirectory, source.ItemSpec);
-                        outputFile = Path.ChangeExtension(outputFile, Path.GetExtension(outputFile).Substring(0, 3));
+                        var outputFile = RazorOutputs.GetOutputFileName(this.OutputDirectory, source.ItemSpec);
                         Directory.CreateDirectory(Path.GetDirectoryName(outputFile));
                         File.WriteAllText(outputFile, result.GeneratedCode);
                         outputFiles.Add(outputFile);

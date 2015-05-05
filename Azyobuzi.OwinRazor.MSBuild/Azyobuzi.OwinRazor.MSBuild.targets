@@ -5,18 +5,24 @@
       GenerateRazorCode;
       $(CompileDependsOn)
     </CompileDependsOn>
+    <_AzyobuziOwinRazorTasks>..\tools\Azyobuzi.OwinRazor.MSBuild.dll</_AzyobuziOwinRazorTasks>
     <RazorOutputDirectory>$(IntermediateOutputPath)Azyobuzi.OwinRazor\</RazorOutputDirectory>
   </PropertyGroup>
 
   <ItemGroup>
     <AvailableItemName Include="CompileRazor" />  
-    <_RazorOutputs Include="@(CompileRazor -> '$(RazorOutputDirectory)%(RelativeDir)%(Filename)%(Extension->Substring(0, 3))')" />
   </ItemGroup>
-  
-  <UsingTask AssemblyFile="..\tools\Azyobuzi.OwinRazor.MSBuild.dll" TaskName="Azyobuzi.OwinRazor.MSBuild.GenerateRazorCode" />
-  
-  <Target Name="GenerateRazorCode" Inputs="@(CompileRazor)" Outputs="@(_RazorOutputs)">
-    <Message Text="$(_RazorOutputs)" /> <!-- Debug -->
+
+  <UsingTask AssemblyFile="$(_AzyobuziOwinRazorTasks)" TaskName="Azyobuzi.OwinRazor.MSBuild.RazorOutputs" />
+  <UsingTask AssemblyFile="$(_AzyobuziOwinRazorTasks)" TaskName="Azyobuzi.OwinRazor.MSBuild.GenerateRazorCode" />
+
+  <Target Name="_GenRazorOutputs">
+    <RazorOutputs Sources="@(CompileRazor)" OutputDirectory="$(RazorOutputDirectory)">
+      <Output TaskParameter="Outputs" ItemName="_RazorOutputs" />
+    </RazorOutputs>
+  </Target>
+
+  <Target Name="GenerateRazorCode" Inputs="@(CompileRazor)" Outputs="@(_RazorOutputs)" DependsOnTargets="_GenRazorOutputs">
     <GenerateRazorCode Sources="@(CompileRazor)" OutputDirectory="$(RazorOutputDirectory)" RootNamespace="$(RootNamespace)">
       <Output TaskParameter="OutputFiles" ItemName="Compile" />
     </GenerateRazorCode>
