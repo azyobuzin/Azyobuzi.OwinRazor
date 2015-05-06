@@ -50,7 +50,7 @@
     <Compile Include="RazorOutputs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Azyobuzi.OwinRazor.MSBuild.targets">
+    <None Include="Azyobuzi.OwinRazor.targets">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
@@ -60,7 +60,7 @@
     <ItemGroup>
       <_DllFiles Include="$(OutputPath)*.dll" />
     </ItemGroup>
-    <Copy SourceFiles="Azyobuzi.OwinRazor.MSBuild.targets" DestinationFolder="..\bin\$(Configuration)\build" />
+    <Copy SourceFiles="Azyobuzi.OwinRazor.targets" DestinationFolder="..\bin\$(Configuration)\build" />
     <Copy SourceFiles="@(_DllFiles)" DestinationFolder="..\bin\$(Configuration)\tools" />
   </Target>
 </Project>

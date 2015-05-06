@@ -16,7 +16,7 @@ namespace Azyobuzi.OwinRazor
     {
         protected TextWriter output;
 
-        public ExecutionContext Context { get; set; }
+        public TemplateExecutionContext Context { get; set; }
 
         public TemplateBase Layout { get; set; }
 
@@ -55,22 +55,24 @@ namespace Azyobuzi.OwinRazor
             writer.Write(value);
         }
 
-        public virtual void WriteAttribute(string name, PositionTagged prefix, PositionTagged suffix, params AttributeValue[] values)
+        public virtual void WriteAttribute(string name, PositionTagged prefix, PositionTagged suffix, params object[] values)
         {
             this.WriteAttributeTo(this.output, name, prefix, suffix, values);
         }
 
-        public virtual void WriteAttributeTo(TextWriter writer, string name, PositionTagged prefix, PositionTagged suffix, params AttributeValue[] values)
+        public virtual void WriteAttributeTo(TextWriter writer, string name, PositionTagged prefix, PositionTagged suffix, params object[] values)
         {
             writer.Write(prefix.Item1);
 
             var first = true;
-            foreach (var attr in values)
+
+            // AttributeValue = Tuple<PositionTagged<string>, PositionTagged<string or object>, bool>
+            foreach (dynamic attr in values)
             {
                 if (first)
                     first = false;
                 else
-                    writer.Write(attr.Item1.Item1); // Write prefix
+                    writer.Write((string)attr.Item1.Item1); // Write prefix
 
                 var value = attr.Item2.Item1;
                 if (value is bool)
@@ -83,7 +85,7 @@ namespace Azyobuzi.OwinRazor
                     if (attr.Item3)
                         writer.Write((string)attr.Item2.Item1);
                     else
-                        this.WriteTo(writer, attr.Item2.Item1);
+                        this.WriteTo(writer, (object)attr.Item2.Item1);
                 }
             }
 
@@ -132,7 +134,7 @@ namespace Azyobuzi.OwinRazor
             SectionAction action;
             if (this.Context.Sections.TryGetValue(name, out action))
             {
-                await action(output).ConfigureAwait(false);
+                await action(this.output).ConfigureAwait(false);
             }
             else
             {

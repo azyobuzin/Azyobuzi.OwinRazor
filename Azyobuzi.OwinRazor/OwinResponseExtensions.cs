@@ -10,7 +10,7 @@ namespace Azyobuzi.OwinRazor
         public static async Task View(this IOwinResponse response, TemplateBase template, ViewDataDictionary viewData = null)
         {
             var context = response.Context;
-            template.Context = new ExecutionContext(context, viewData);
+            template.Context = new TemplateExecutionContext(context, viewData);
             var bytes = Encoding.UTF8.GetBytes(await template.RunAsync().ConfigureAwait(false));
             response.ContentType = "text/html; charset=utf-8";
             response.ContentLength = bytes.LongLength;

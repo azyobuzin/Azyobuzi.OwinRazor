@@ -6,9 +6,9 @@ using Microsoft.Owin;
 
 namespace Azyobuzi.OwinRazor
 {
-    public class ExecutionContext
+    public class TemplateExecutionContext
     {
-        public ExecutionContext(IOwinContext owinContext, ViewDataDictionary viewData = null)
+        public TemplateExecutionContext(IOwinContext owinContext, ViewDataDictionary viewData = null)
         {
             this.OwinContext = owinContext;
             this.ViewData = viewData ?? new ViewDataDictionary();

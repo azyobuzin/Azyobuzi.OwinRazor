@@ -9,13 +9,12 @@
     <licenseUrl>https://github.com/azyobuzin/Azyobuzi.OwinRazor/blob/master/LICENSE.txt</licenseUrl>
     <projectUrl>https://github.com/azyobuzin/Azyobuzi.OwinRazor</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>A library for Microsoft.Owin app with RazorEngine</description>
+    <description>A library for Microsoft.Owin app with Razor views</description>
     <copyright>(C) 2015 azyobuzin</copyright>
     <tags>razor owin</tags>
-    <dependencies>
-      <dependency id="RazorEngine" version="[3.6.5, 4.0)" />
-      <dependency id="Microsoft.AspNet.Razor" version="[3.2.3, 4.0)" />
-      <dependency id="Microsoft.Owin" version="3.0.1" />
-    </dependencies>
   </metadata>
+  <files>
+    <file src="..\bin\Release\build\*" target="build" />
+    <file src="..\bin\Release\tools\*.dll" target="tools" />
+  </files>
 </package>

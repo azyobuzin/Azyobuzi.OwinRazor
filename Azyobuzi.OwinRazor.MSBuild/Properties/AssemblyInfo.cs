@@ -9,8 +9,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Azyobuzi.OwinRazor.MSBuild")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyProduct("Azyobuzi.OwinRazor")]
+[assembly: AssemblyCopyright("Copyright © 2015 azyobuzin")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

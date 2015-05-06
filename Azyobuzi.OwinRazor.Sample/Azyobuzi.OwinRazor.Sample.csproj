@@ -87,5 +87,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="..\bin\$(Configuration)\build\Azyobuzi.OwinRazor.MSBuild.targets" />
+  <Import Project="..\bin\$(Configuration)\build\Azyobuzi.OwinRazor.targets" />
 </Project>
